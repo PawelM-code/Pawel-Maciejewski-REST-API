@@ -23,7 +23,7 @@ public class SimpleEmailServiceTest {
     @Test
     public void shouldSendMail(){
         //Given
-        Mail mail = new Mail("test@test.com", "Test", "Test message");
+        Mail mail = new Mail("test@test.com", null,"Test", "Test message");
 
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
         simpleMailMessage.setTo(mail.getMailTo());
