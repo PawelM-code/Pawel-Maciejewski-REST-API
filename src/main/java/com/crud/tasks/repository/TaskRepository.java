@@ -8,6 +8,9 @@ import java.util.Optional;
 
 public interface TaskRepository extends CrudRepository<Task, Long> {
     @Override
+    long count();
+
+    @Override
     List<Task> findAll();
 
     @Override
