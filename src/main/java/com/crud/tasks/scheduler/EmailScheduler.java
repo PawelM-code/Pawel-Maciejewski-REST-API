@@ -31,7 +31,6 @@ public class EmailScheduler {
     }
 
     private String setMessageDependingToTheTasksSize(long size) {
-        return (size == 1) ? "Currently in database you got: " + size + " task." :
-                             "Currently in database you got: " + size + " tasks.";
+        return "Currently in database you got: " + size + (size == 1 ? " task." : " tasks.");
     }
 }
