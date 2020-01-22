@@ -11,6 +11,7 @@ sourceCompatibility = '1.8'
 
 repositories {
 	mavenCentral()
+	jcenter()
 }
 
 dependencies {
@@ -25,13 +26,15 @@ dependencies {
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: '2.2.1.RELEASE'
 //	compile 'org.postgresql:postgresql'
 	compile 'mysql:mysql-connector-java'
+	testCompile 'junit:junit:4.12'
+	compile 'junit:junit:4.12'
 //	providedRuntime "org.springframework.boot:spring-boot-starter-tomcat"
 	
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
 }
-
-test {
-	useJUnitPlatform()
-}
+//
+//test {
+//	useJUnitPlatform()
+//}
