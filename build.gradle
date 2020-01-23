@@ -28,6 +28,7 @@ dependencies {
 	compile 'mysql:mysql-connector-java'
 //	testCompile 'junit:junit:4.12'
 //	compile 'uk.org.lidalia:slf4j-test:1.1.0'
+	compile 'com.google.code.gson:gson:2.8.6'
 
 
 	compile 'junit:junit:4.12'
