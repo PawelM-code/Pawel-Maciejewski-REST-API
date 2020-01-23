@@ -26,7 +26,10 @@ dependencies {
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: '2.2.1.RELEASE'
 //	compile 'org.postgresql:postgresql'
 	compile 'mysql:mysql-connector-java'
-	testCompile 'junit:junit:4.12'
+//	testCompile 'junit:junit:4.12'
+//	compile 'uk.org.lidalia:slf4j-test:1.1.0'
+
+
 	compile 'junit:junit:4.12'
 //	providedRuntime "org.springframework.boot:spring-boot-starter-tomcat"
 	
@@ -34,6 +37,11 @@ dependencies {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
 }
+
+configurations.all {
+	exclude module: 'slf4j'
+}
+
 //
 //test {
 //	useJUnitPlatform()
