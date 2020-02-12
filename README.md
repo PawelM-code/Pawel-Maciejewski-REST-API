@@ -2,7 +2,7 @@
 Kodilla course REST API
 
 ## Api Documentation - Swagger
-Run TasksApplication.java and go to [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
+[https://intense-escarpment-61218.herokuapp.com/swagger-ui.html#/](https://intense-escarpment-61218.herokuapp.com/swagger-ui.html#/)
 
 ## Technologies
 Project is created with:
@@ -18,3 +18,4 @@ Project is created with:
 * Tomcat
 * JDBC
 * Slf4j
+* Thymeleaf
