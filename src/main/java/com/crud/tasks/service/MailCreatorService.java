@@ -37,4 +37,22 @@ public class MailCreatorService {
         context.setVariable("application_functionality", functionality);
         return templateEngine.process("mail/created-trello-card-mail", context);
     }
+
+    public String buildSchedulerEmail(String message){
+        List<String> functionality = new ArrayList<>();
+        functionality.add("Once a day");
+        functionality.add("Several times a day");
+
+        Context context = new Context();
+        context.setVariable("message", message);
+        context.setVariable("task_url", "http://localhost:8888/tasks_frontend/");
+        context.setVariable("button", "Show Tasks");
+        context.setVariable("admin_config", adminConfig);
+        context.setVariable("company_name", adminConfig.getCompanyName());
+        context.setVariable("goodbye_message", "Regards");
+        context.setVariable("show_button", true);
+        context.setVariable("is_friend", true);
+        context.setVariable("application_functionality", functionality);
+        return templateEngine.process("mail/created-tasks-count-mail", context);
+    }
 }

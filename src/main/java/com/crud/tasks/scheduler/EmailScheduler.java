@@ -23,7 +23,7 @@ public class EmailScheduler {
         String message = setMessageDependingToTheTasksSize(size);
 
         simpleEmailService.send(new Mail(
-                adminConfig.getAdminMail(),
+                adminConfig.getAdminMail2(),
                 null,
                 SUBJECT,
                 message
