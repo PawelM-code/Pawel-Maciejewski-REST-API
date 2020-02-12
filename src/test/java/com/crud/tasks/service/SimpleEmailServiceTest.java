@@ -10,6 +10,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -20,30 +21,17 @@ public class SimpleEmailServiceTest {
 
     @Mock
     private JavaMailSender javaMailSender;
-    @Mock
-    private MailCreatorService mailCreatorService;
-
-    public MimeMessagePreparator createMimeMessage(final Mail mail) {
-        return mimeMessage -> {
-            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage);
-            mimeMessageHelper.setTo(mail.getMailTo());
-            mimeMessageHelper.setSubject(mail.getSubject());
-            mimeMessageHelper.setText(mailCreatorService.buildTrelloCardEmail(mail.getMessage()), true);
-        };
-    }
 
     @Test
     public void shouldSendMail() {
         //Given
         Mail mail = new Mail("test@test.com", null, "Test", "Test message");
 
-        MimeMessagePreparator mimeMessagePreparator = createMimeMessage(mail);
-
         //When
         simpleEmailService.send(mail);
 
         //Then
-        verify(javaMailSender, times(1)).send(mimeMessagePreparator);
+        verify(javaMailSender, times(1)).send(any(MimeMessagePreparator.class));
     }
 
 }
