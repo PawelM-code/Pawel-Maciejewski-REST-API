@@ -22,6 +22,8 @@ public class MailCreatorService {
         context.setVariable("task_url", "http://localhost:8888/tasks_frontend/");
         context.setVariable("button", "Visit website");
         context.setVariable("admin_name", adminConfig.getAdminName());
+        context.setVariable("company_name", adminConfig.getCompanyName());
+        context.setVariable("goodbye_message", "This message was sent automatically, please do not reply.");
         return templateEngine.process("mail/created-trello-card-mail", context);
     }
 }
