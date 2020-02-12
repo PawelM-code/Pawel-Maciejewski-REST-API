@@ -6,8 +6,9 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.mail.javamail.MimeMessagePreparator;
 
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -19,22 +20,30 @@ public class SimpleEmailServiceTest {
 
     @Mock
     private JavaMailSender javaMailSender;
+    @Mock
+    private MailCreatorService mailCreatorService;
+
+    public MimeMessagePreparator createMimeMessage(final Mail mail) {
+        return mimeMessage -> {
+            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage);
+            mimeMessageHelper.setTo(mail.getMailTo());
+            mimeMessageHelper.setSubject(mail.getSubject());
+            mimeMessageHelper.setText(mailCreatorService.buildTrelloCardEmail(mail.getMessage()), true);
+        };
+    }
 
     @Test
-    public void shouldSendMail(){
+    public void shouldSendMail() {
         //Given
-        Mail mail = new Mail("test@test.com", null,"Test", "Test message");
+        Mail mail = new Mail("test@test.com", null, "Test", "Test message");
 
-        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
-        simpleMailMessage.setTo(mail.getMailTo());
-        simpleMailMessage.setSubject(mail.getSubject());
-        simpleMailMessage.setText(mail.getMessage());
+        MimeMessagePreparator mimeMessagePreparator = createMimeMessage(mail);
 
         //When
         simpleEmailService.send(mail);
 
         //Then
-        verify(javaMailSender, times(1)).send(simpleMailMessage);
+        verify(javaMailSender, times(1)).send(mimeMessagePreparator);
     }
 
 }
